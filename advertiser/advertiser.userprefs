@@ -1,0 +1,42 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="advertiser/Views/Account/Add.aspx" ctype="Workbench">
+    <Files>
+      <File FileName="advertiser/UTest/AccountFixture.cs" Line="5" Column="1" />
+      <File FileName="advertiser/Models/Account.cs" Line="9" Column="21" />
+      <File FileName="advertiser/Controllers/AccountController.cs" Line="37" Column="18" />
+      <File FileName="advertiser/Mappings/Account.hbm.xml" Line="12" Column="25" />
+      <File FileName="advertiser/Mappings/nhibernate.cfg.xml" Line="6" Column="86" />
+      <File FileName="advertiser/UTest/Mocks/NHSessionMock.cs" Line="1" Column="1" />
+      <File FileName="advertiser/Global.asax.cs" Line="22" Column="39" />
+      <File FileName="advertiser/Views/Account/Index.aspx" Line="1" Column="1" />
+      <File FileName="advertiser/Views/Account/Add.aspx" Line="4" Column="94" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="advertiser" expanded="True">
+            <Node name="Views" expanded="True">
+              <Node name="Account" expanded="True">
+                <Node name="Add.aspx" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore" />
+</Properties>
