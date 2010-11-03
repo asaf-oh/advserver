@@ -1,0 +1,5 @@
+body { background-color: rgb(44, 122, 199) }
+div#login_box {position:relative; top :100px; left:100px; width:540px; height:480px }
+h2 { color: white; background-color:rgb(44, 122, 199); position:absolute; z-index:3}
+svg { position: absolute; left:0; top:0; }
+#input10 { position:absolute; left: 50px; top: 200px; z-index: 3}
