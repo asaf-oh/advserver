@@ -115,7 +115,7 @@ advDlgBox =  Class.create( {
 	this.renderer = get_renderer(element);
 
 	this.frame = new advFrame(this.renderer);
-	this.title = element.firstDescendant();	
+	this.title = $$('#'+element.id + ' h2')[0];
 	this.titleBullet = new advBullet(this.renderer);
 
 	this.position_title();
