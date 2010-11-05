@@ -24,9 +24,12 @@ advFrame = Class.create( {
       Returns:
       A new advFrame
     */
-    initialize: function(renderer) {
+    initialize: function(renderer, stroke, bgcolor) {
 	this.renderer = renderer;
 	this.size = renderer.getSize();
+
+	this.stroke = stroke;
+	this.bgcolor = bgcolor;
 
 	this.rect = new Graphic.Rectangle(renderer);
 	
@@ -41,16 +44,16 @@ advFrame = Class.create( {
     */  
     render: function()
     {
-	const stroke_w = 5;
+	const stroke_w = this.stroke.w;
 	const padding = 20;
     
 	var rect = this.rect;
 	var width = this.size.width - stroke_w*2 - padding*2;
 	var height = this.size.height - stroke_w*2 - padding*2;
     
-	rect.setStroke({r: 255, g: 255, b: 255, w:stroke_w, a:0});
+	rect.setStroke(this.stroke);
 	rect.setBounds(stroke_w + padding, stroke_w + padding, width, height);
-	rect.setFill({r: 44, g: 122, b: 199, a: 0});
+	//rect.setFill({r: 44, g: 122, b: 199, a: 0});
 	rect.setRoundCorner(20, 25);
 	rect.setID("login")
 
@@ -64,16 +67,17 @@ advBullet = Class.create( {
       Function: initialize
       Constructor. 
       
-      Returns:
-      A new advBullet
+      Returns:      A new advBullet
     */
-    initialize: function(renderer) {
+    initialize: function(renderer, stroke, bgcolor) {
 	this.renderer = renderer;
-	this.size = {width:50, height:50};
+	this.stroke = stroke;
+	this.bgcolor = bgcolor;
 
+	this.size = {width:50, height:50};
 	this.outer = new Graphic.Circle(renderer);
 	this.inner = new Graphic.Circle(renderer);
-	
+
 	return this;
     },
     /*
@@ -97,8 +101,8 @@ advBullet = Class.create( {
 	this.inner.setFill(inner_color);
 
 	this.outer.setBounds(pos.x, pos.y, this.size.width, this.size.height);
-	this.outer.setFill({r: 44, g:122, b:199});
-	this.outer.setStroke({r: 255, g: 255, b: 255, w:5, a:0});
+	this.outer.setFill(this.bgcolor);
+	this.outer.setStroke(this.stroke);
 
 	this.renderer.add(this.outer);
 	this.renderer.add(this.inner);
@@ -110,21 +114,39 @@ advDlgBox =  Class.create( {
     /* Constructor
      */
     initialize : function(element, options)    {
-	console.log("advDlgBox : Enter - " + element);
 	this.element = element;
 	this.renderer = get_renderer(element);
 
-	this.frame = new advFrame(this.renderer);
+	this.stroke =  {r: 255, g: 255, b: 255, w:6, a:0};
+	this.bgcolor = {r:44, g:122 , b:199};
+
+	this.frame = new advFrame(this.renderer, this.stroke, this.bgcolor);
 	this.title = $$('#'+element.id + ' h2')[0];
-	this.titleBullet = new advBullet(this.renderer);
+	this.titleBullet = new advBullet(this.renderer, this.stroke, this.bgcolor);
 
 	this.position_title();
+
+	buttons = element.getElementsBySelector('div.button');
+	for (i=0; i<buttons.length; i++)
+	    alert(buttons[i].title);
+
 	this.frame.render();
 	this.titleBullet.render();
     },
 
     position_title : function() {
-	this.title.setStyle({'top':'-10px', 'left':'127px', 'padding':'0px 5px 0px 10px'});
+	this.title.setStyle({'top':'-10px', 'left':'127.5px', 'padding':'0px 5px 0px 12px'});
     }    
 
 }); // advDlgBox
+
+
+
+function init_dialogs()
+{
+    var boxes = $$('div.dlgbox');
+
+    for (i =0; i<boxes.length; i++) 
+	new advDlgBox(boxes[i]);
+}
+
