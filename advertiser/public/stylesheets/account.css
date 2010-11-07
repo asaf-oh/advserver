@@ -1,7 +1,12 @@
-body { background-color: rgb(44, 122, 199); }
+body { background-color: rgb(44, 122, 199); color :white; }
 div.dlgbox {position:relative;}
-div#login_box {width:540px; height:480px; }
-h2 { color: white; background-color:rgb(44, 122, 199); position:absolute; z-index:3}
-/* svg { position: absolute; left:0; top:0; }*/
-#input10 { position:absolute; left: 50px; top: 200px; z-index: 3}
-.dlgbox .button { width: 100px; height:100px; border: 5px solid orange; }
+div.dlgbox * {position:absolute;}
+div#login_box {width:480px; height:360px; }
+h2 { width:180px; height:65px; margin:0; background-color: rgb(44, 122, 199);  z-index:3}
+svg { left:0; top:0; }
+.dlgbox .button { width: 60px; height:60px; z-index:3; cursor: pointer}
+.dlgbox .button:hover { color: orange; }
+div.dlgbox form {margin-left: 30px; margin-top: 80px; z-index:4; }
+div.dlgbox form * {position: relative;}
+div.dlgbox form * {position: relative;}
+div.dlgbox form table {border-spacing : 21px;}

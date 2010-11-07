@@ -1,8 +1,15 @@
 <h1> Welcome </h1>
 <div id="login_box" class="dlgbox">
   <h2 id="login_title"> New Account </h2>
-  <input id="input10" type="text" />
-  <div class="button" title="Clikcer" onclick="clicked()">
-  <div class="button" title="Apply" onclick="clicked()">
+  <form id="account"> 
+    <table>
+      <tr>   <td> Name  </td>  <td> <input id="input_name" type="text" /> </td> </tr>
+      <tr>   <td> Email  </td>  <td> <input id="input_email" type="text" /> </td> </tr>
+      <tr>   <td> Password  </td>  <td> <input id="input_password" type="password" /> </td> </tr>
+      <tr>   <td> Repeat password  </td>  <td> <input id="input_repeat_password" type="password" /> </td> </tr> 
+    </table>
+  </form>  
+  <div id="btn_cancel" class="button" onclick="cancel()"> Cancel </div>
+  <div id="btn_apply" class="button" onclick="add_account()"> Apply </div>
 </div>
 

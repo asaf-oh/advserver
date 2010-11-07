@@ -53,7 +53,6 @@ advFrame = Class.create( {
     
 	rect.setStroke(this.stroke);
 	rect.setBounds(stroke_w + padding, stroke_w + padding, width, height);
-	//rect.setFill({r: 44, g: 122, b: 199, a: 0});
 	rect.setRoundCorner(20, 25);
 	rect.setID("login")
 
@@ -77,6 +76,9 @@ advBullet = Class.create( {
 	this.size = {width:50, height:50};
 	this.outer = new Graphic.Circle(renderer);
 	this.inner = new Graphic.Circle(renderer);
+	
+	this.position = {x:0, y:0};
+	this.inn_radius = this.size.width/1.5;
 
 	return this;
     },
@@ -92,8 +94,9 @@ advBullet = Class.create( {
 
 	// 
 	var inner_color = {r: 240, g: 161, b: 61, a:0}
-	var pos = {x: 75, y: 4};
-	var inn_size = {width : this.size.width/1.5, height: this.size.height/1.5};
+	var pos = this.position;
+//	var inn_size = {width : this.size.width/1.5, height: this.size.height/1.5};
+	var inn_size = {width : this.inn_radius, height: this.inn_radius};
 	var inn_pos = { x: pos.x + (this.size.width - inn_size.width)/2 ,
 			y: pos.y + (this.size.height - inn_size.height)/2 };
 
@@ -121,23 +124,55 @@ advDlgBox =  Class.create( {
 	this.bgcolor = {r:44, g:122 , b:199};
 
 	this.frame = new advFrame(this.renderer, this.stroke, this.bgcolor);
-	this.title = $$('#'+element.id + ' h2')[0];
-	this.titleBullet = new advBullet(this.renderer, this.stroke, this.bgcolor);
 
-	this.position_title();
+	this.title = $$('#'+element.id + ' h2')[0];	
+	this.titleBullet = new advBullet(get_renderer(this.title), this.stroke, this.bgcolor);
+	this.titleBullet.position = {x: 5, y: 3};
 
-	buttons = element.getElementsBySelector('div.button');
-	for (i=0; i<buttons.length; i++)
-	    alert(buttons[i].title);
+	this.buttonBullet = new Array();
+	this.buttons = element.getElementsBySelector('div.button');
+	for (i=0; i < this.buttons.length; i++) {
+	    this.buttonBullet[i] = new advBullet(get_renderer(this.buttons[i]), 
+						 this.stroke, this.bgcolor);
+	    this.buttonBullet[i].position = {x: 5, y: 3};
+	    this.buttonBullet[i].inn_radius = 21;
+	    this.buttons[i].bullet = this.buttonBullet[i];
+	    this.buttons[i].onmouseover = function(el, ex) {
+		this.bullet.inn_radius= 28;
+		this.bullet.render();
+		setTimeout("$('" + this.id + "').bullet.inn_radius=21;$('" + this.id + "').bullet.render();", 500);
+	    };
+/*	    this.buttons[i].onclick = function(el, ex) {
+		this.bullet.inn_radius= 28;
+		this.bullet.render();
+		setTimeout("$('" + this.id + "').bullet.inn_radius=21;$('" + this.id + "').bullet.render();", 500);
+	    };*/
+	}
+
+
+	this._position_title();
+	this._position_buttons();
+
 
 	this.frame.render();
 	this.titleBullet.render();
+	for (i=0; i < this.buttonBullet.length; i++)
+	    this.buttonBullet[i].render();
     },
 
-    position_title : function() {
-	this.title.setStyle({'top':'-10px', 'left':'127.5px', 'padding':'0px 5px 0px 12px'});
-    }    
+    _position_title: function() {
+	this.title.setStyle({'top':'0px', 'left':'100px', 'padding':'10px 10px 10px 65px'});
+    },    
 
+    _position_buttons: function() {
+	var size = this.renderer.getSize();
+
+	for (i=0; i < this.buttons.length; i++) {
+	    this.buttons[i].setStyle({'top': size.height - 53 + 'px', 
+				      'left': size.width-200 + i*75 + 'px',
+				      'padding':'60px 0 0 3px'});
+	}
+    }
 }); // advDlgBox
 
 
