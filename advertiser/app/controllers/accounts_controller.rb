@@ -4,10 +4,11 @@ class AccountsController < ApplicationController
   # GET /account/new
   # GET /account/new.xml
   def new
-    @account = Account.new
-
-    respond_to do |format|
-      format.html
+    # @account = Account.new
+    action="newd"
+    printf("AccountsController => %s", action);
+    respond_to do |format|      
+      format.html { render :action => "new" }
       format.xml  { render :xml => @account }
     end
   end

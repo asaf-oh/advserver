@@ -7,7 +7,7 @@
   <%= javascript_include_tag "pgf-core.js", "pgf-renderer.js", "adv-dlgbox.js", "account.js", :cache => true %>
   <%= csrf_meta_tag %>
 </head>
-<body onload="init_dialogs();">
+<body onload="init_dialogs(); <%= params[:action] %>_onload();">
 
 <%= yield %>
 

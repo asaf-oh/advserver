@@ -1,6 +1,12 @@
-// account/new.js
+// account.js
 
-function add_account()
+
+function new_onload()
+{
+    $('account_name').focus();
+}
+
+function create()
 {
     name = $('account')['input_name'].getValue();
     email = $('account')['input_email'].getValue();

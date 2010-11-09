@@ -1,5 +1,11 @@
 // adv-dlgbox.js
 
+const stroke = {r: 255, g: 255, b: 255, w:4, a:0};
+const bullet_radius = 18;
+const title_inn_radius = 12;
+const button_inn_radius = 8;
+
+
 function get_renderer(element)
 {
     var renderer;
@@ -73,12 +79,12 @@ advBullet = Class.create( {
 	this.stroke = stroke;
 	this.bgcolor = bgcolor;
 
-	this.size = {width:50, height:50};
+	this.size = {width: bullet_radius*2, height: bullet_radius*2};
 	this.outer = new Graphic.Circle(renderer);
 	this.inner = new Graphic.Circle(renderer);
 	
 	this.position = {x:0, y:0};
-	this.inn_radius = this.size.width/1.5;
+	this.inn_radius = this.size.width/3;
 
 	return this;
     },
@@ -96,7 +102,7 @@ advBullet = Class.create( {
 	var inner_color = {r: 240, g: 161, b: 61, a:0}
 	var pos = this.position;
 //	var inn_size = {width : this.size.width/1.5, height: this.size.height/1.5};
-	var inn_size = {width : this.inn_radius, height: this.inn_radius};
+	var inn_size = {width : this.inn_radius*2, height: this.inn_radius*2};
 	var inn_pos = { x: pos.x + (this.size.width - inn_size.width)/2 ,
 			y: pos.y + (this.size.height - inn_size.height)/2 };
 
@@ -120,7 +126,7 @@ advDlgBox =  Class.create( {
 	this.element = element;
 	this.renderer = get_renderer(element);
 
-	this.stroke =  {r: 255, g: 255, b: 255, w:6, a:0};
+	this.stroke =  stroke;
 	this.bgcolor = {r:44, g:122 , b:199};
 
 	this.frame = new advFrame(this.renderer, this.stroke, this.bgcolor);
@@ -128,25 +134,21 @@ advDlgBox =  Class.create( {
 	this.title = $$('#'+element.id + ' h2')[0];	
 	this.titleBullet = new advBullet(get_renderer(this.title), this.stroke, this.bgcolor);
 	this.titleBullet.position = {x: 5, y: 3};
+	this.titleBullet.inn_radius = title_inn_radius;
 
 	this.buttonBullet = new Array();
 	this.buttons = element.getElementsBySelector('div.button');
 	for (i=0; i < this.buttons.length; i++) {
 	    this.buttonBullet[i] = new advBullet(get_renderer(this.buttons[i]), 
 						 this.stroke, this.bgcolor);
-	    this.buttonBullet[i].position = {x: 5, y: 3};
-	    this.buttonBullet[i].inn_radius = 21;
+	    this.buttonBullet[i].position = {x: button_inn_radius, y: button_inn_radius};
+	    this.buttonBullet[i].inn_radius = button_inn_radius;
 	    this.buttons[i].bullet = this.buttonBullet[i];
 	    this.buttons[i].onmouseover = function(el, ex) {
-		this.bullet.inn_radius= 28;
+		this.bullet.inn_radius= button_inn_radius*1.5;
 		this.bullet.render();
-		setTimeout("$('" + this.id + "').bullet.inn_radius=21;$('" + this.id + "').bullet.render();", 500);
+		setTimeout("$('" + this.id + "').bullet.inn_radius=" + button_inn_radius + ";$('" + this.id + "').bullet.render();", 500);
 	    };
-/*	    this.buttons[i].onclick = function(el, ex) {
-		this.bullet.inn_radius= 28;
-		this.bullet.render();
-		setTimeout("$('" + this.id + "').bullet.inn_radius=21;$('" + this.id + "').bullet.render();", 500);
-	    };*/
 	}
 
 
