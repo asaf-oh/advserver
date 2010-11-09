@@ -1,4 +1,4 @@
-class AccountController < ApplicationController
+class AccountsController < ApplicationController
 
 
   # GET /account/new
@@ -7,7 +7,7 @@ class AccountController < ApplicationController
     @account = Account.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @account }
     end
   end
