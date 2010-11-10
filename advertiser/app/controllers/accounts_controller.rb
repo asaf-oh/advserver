@@ -14,14 +14,16 @@ class AccountsController < ApplicationController
   # POST /accounts/create
   # POST /accounts/create.xml
   def create
-    printf("create")
-    @account = Account.new(params[:account])
+    printf("create : %s/%s \n", params["name"], params["password"])
+    @account = Account.new(:name => params["name"], :email => params["email"], :password => params["password"])
     
     respond_to do |format|
       if @account.save
+        printf("save OK\n")
         format.html { redirect_to(@account, :notice => 'Account was successfully created.') }
         format.xml  { render :xml => @account, :status => :created, :location => @account }
       else
+        printf("save FAIL\n")
         format.html { render :action => "new" }
         format.xml  { render :xml => @account.errors, :status => :unprocessable_entity }
       end
@@ -31,6 +33,10 @@ class AccountsController < ApplicationController
   # GET /accounts/show
   # GET /accounts/show.xml
   def show
-    printf("show!");
+    printf("show : name %s", params["id"]);
+    respond_to do |format|      
+      format.html { render :action => "new" }
+      format.xml  { render :xml => @account }
+    end
   end
 end
