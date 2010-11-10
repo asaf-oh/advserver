@@ -1,21 +1,20 @@
 class AccountsController < ApplicationController
 
 
-  # GET /account/new
-  # GET /account/new.xml
+  # GET /accounts/new
+  # GET /accounts/new.xml
   def new
     # @account = Account.new
-    action="newd"
-    printf("AccountsController => %s", action);
     respond_to do |format|      
       format.html { render :action => "new" }
       format.xml  { render :xml => @account }
     end
   end
 
-  # POST /accounts
-  # POST /accounts.xml
+  # POST /accounts/create
+  # POST /accounts/create.xml
   def create
+    printf("create")
     @account = Account.new(params[:account])
     
     respond_to do |format|
@@ -29,5 +28,9 @@ class AccountsController < ApplicationController
     end
   end
 
-
+  # GET /accounts/show
+  # GET /accounts/show.xml
+  def show
+    printf("show!");
+  end
 end
