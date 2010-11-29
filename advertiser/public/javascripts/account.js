@@ -6,13 +6,13 @@ function account_create()
     email = $('new_account')['account_email'].getValue();
     password = $('new_account')['account_password'].getValue();
     
-    var account = {'name': name, 'email' : email, 'password' : password.md5() };       
+    var account = {'name': name, 'email' : email, 'password' : password.md5() }; 
    
     new Ajax.Request("accounts", {
 	method: 'post',
 	parameters: account ,
 	onSuccess: function(transport) {
-	    alert(transport);
+	    console.log("accounts : post returns " + transport);
 	}
     });
  

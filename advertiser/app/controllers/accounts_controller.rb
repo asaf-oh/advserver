@@ -11,6 +11,17 @@ class AccountsController < ApplicationController
     end
   end
 
+  # GET /accounts/login
+  # GET /accounts/login.xml
+  def login
+    # @account = Account.new
+    I18n.locale = 'he'
+    respond_to do |format|      
+      format.html { render :action => "login" }
+      format.xml  { render :xml => @account }
+    end
+  end
+
   # POST /accounts/create
   # POST /accounts/create.xml
   def create

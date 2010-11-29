@@ -1,5 +1,5 @@
 body { background-color: rgb(44, 122, 199); color :white; }
-div.dlgbox {position:relative;width:480px; height:360px;}
+div.dlgbox {position:relative; width:480px; height:360px;}
 div.dlgbox * {position:absolute;}
 h2 { width:180px; height:65px; margin:0; background-color: rgb(44, 122, 199);  z-index:3}
 svg { left:0; top:0; }

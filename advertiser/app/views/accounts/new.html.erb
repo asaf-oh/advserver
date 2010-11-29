@@ -5,11 +5,11 @@
 
   <%= form_for(Account.new) do |f| %>
   <table>
-    <tr> <td> <label for="account_name"> Name </label> </td> <td> <%= text_field 'account', 'name', 'size' => 20  %> </td> </td>
-    <tr> <td> <label for="account_email"> Email </label> </td> <td> <%= text_field 'account', 'email', 'size' => 20  %> </td> </tr>
+    <tr> <td> <label for="account_name"> Name </label> </td> <td> <%= text_field 'account', 'name', 'size' => 15  %> </td> </td>
+    <tr> <td> <label for="account_email"> Email </label> </td> <td> <%= text_field 'account', 'email', 'size' => 15  %> </td> </tr>
 
-    <tr> <td> <label for="account_password"> Password </label> </td> <td> <%= password_field 'account', 'password', 'size' => 20  %> </td> </tr>
-    <tr> <td> <label for="repeat_password"> Repeat Password </label> </td> <td> <input type="password" /> </td> </tr>
+    <tr> <td> <label for="account_password"> Password </label> </td> <td> <%= password_field 'account', 'password', 'size' => 15  %> </td> </tr>
+    <tr> <td> <label for="repeat_password"> Repeat Password </label> </td> <td> <input size=15 type="password" /> </td> </tr>
   </table>
 
 

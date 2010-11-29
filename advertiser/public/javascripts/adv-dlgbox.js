@@ -5,7 +5,6 @@ const bullet_radius = 18;
 const title_inn_radius = 12;
 const button_inn_radius = 8;
 
-
 function get_renderer(element)
 {
     var renderer;
@@ -19,7 +18,6 @@ function get_renderer(element)
 
     return renderer;
 }
-
 
 
 advFrame = Class.create( {
