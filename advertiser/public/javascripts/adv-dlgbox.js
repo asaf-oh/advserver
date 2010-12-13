@@ -7,6 +7,8 @@ const button_inn_radius = 8;
 
 function get_renderer(element)
 {
+    //    return new Graphic.CanvasRenderer(element);
+
     var renderer;
 
     if (Graphic.rendererSupported("VML"))
@@ -99,7 +101,6 @@ advBullet = Class.create( {
 	// 
 	var inner_color = {r: 240, g: 161, b: 61, a:0}
 	var pos = this.position;
-//	var inn_size = {width : this.size.width/1.5, height: this.size.height/1.5};
 	var inn_size = {width : this.inn_radius*2, height: this.inn_radius*2};
 	var inn_pos = { x: pos.x + (this.size.width - inn_size.width)/2 ,
 			y: pos.y + (this.size.height - inn_size.height)/2 };
@@ -121,6 +122,7 @@ advDlgBox =  Class.create( {
     /* Constructor
      */
     initialize : function(element, options)    {
+	this.rightToLeft =  ($$('body')[0].dir == "rtl");
 	this.element = element;
 	this.renderer = get_renderer(element);
 
@@ -131,7 +133,10 @@ advDlgBox =  Class.create( {
 
 	this.title = $$('#'+element.id + ' h2')[0];	
 	this.titleBullet = new advBullet(get_renderer(this.title), this.stroke, this.bgcolor);
-	this.titleBullet.position = {x: 5, y: 3};
+	this.titleBullet.position = 
+	    (this.rightToLeft)?({x:element.getWidth() - 300, y:3}):({x: 5, y: 3});
+
+	console.log("pos  " + 	this.titleBullet.position.x);
 	this.titleBullet.inn_radius = title_inn_radius;
 
 	this.buttonBullet = new Array();
@@ -158,11 +163,18 @@ advDlgBox =  Class.create( {
 	this.titleBullet.render();
 	for (i=0; i < this.buttonBullet.length; i++)
 	    this.buttonBullet[i].render();
+
+	this.renderer.draw();
     },
 
     _position_title: function() {
-	this.title.setStyle({'top':'0px', 'left':'100px', 'padding':'10px 10px 10px 65px'});
-    },    
+	if (this.rightToLeft)  
+	    this.title.setStyle(
+		{'top':'0px', 'right':'100px', 'padding':'10px 55px 10px 10px'});
+	 else 
+	    this.title.setStyle(
+		{'top':'0px', 'left':'100px', 'padding':'10px 10px 10px 55px'});	
+     },    
 
     _position_buttons: function() {
 	var size = this.renderer.getSize();

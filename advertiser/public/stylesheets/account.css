@@ -1,8 +1,10 @@
-body { background-color: rgb(44, 122, 199); color :white; }
+* { background-color: rgb(44, 122, 199); }
+body {  color :white; }
 div.dlgbox {position:relative; width:480px; height:360px;}
 div.dlgbox * {position:absolute;}
-h2 { width:180px; height:65px; margin:0; background-color: rgb(44, 122, 199);  z-index:3}
-svg { left:0; top:0; }
+h2 { margin:0;  top:12px;  left: 42%; padding-left: 18px; padding-right:12px;}
+h2.RTL { right:37%;  padding-left: 18px; padding-right:12px;} 
+svg {  }
 .dlgbox .button { width: 60px; height:60px; z-index:3; cursor: pointer}
 .dlgbox .button:hover { color: orange; }
 div.dlgbox form {margin-left: 30px; margin-top: 80px; z-index:4; }
@@ -11,3 +13,4 @@ div.dlgbox form * {position: relative;}
 div.dlgbox form table {border-spacing : 21px;}
 input {  border: 1px solid #000;}
 input:focus { background-color: #c0d6ed; border: 1px solid #ffa500;}
+
